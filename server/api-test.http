@@ -1,0 +1,123 @@
+@baseUrl = http://localhost:3000/api
+@accessToken = {{login.response.body.accessToken}}
+@refreshToken = {{login.response.body.refreshToken}}
+
+### App health
+GET {{baseUrl}}/
+
+### Auth - register
+# @name register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+	"email": "test2@example.com",
+	"password": "P@ssw0rd123",
+	"name": "Test User"
+}
+
+### Auth - login
+# @name login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+	"email": "test2@example.com",
+	"password": "P@ssw0rd123"
+}
+
+### Auth - refresh access token
+POST {{baseUrl}}/auth/login/access-token
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+	"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzcxMTgyNzE2LCJleHAiOjE3NzE3ODc1MTZ9.M5eHWgQOl7kQUKMm6O6NyknB__Sl3YF3bf_IKm66p0A"
+}
+
+### Category - get all
+GET {{baseUrl}}/category
+
+### Category - create
+# @name createCategory
+POST {{baseUrl}}/category
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+	"name": "New Category",
+	"image": "/uploads/default-category.png"
+}
+
+### Category - get by id
+GET {{baseUrl}}/category/by-id/1
+
+### Category - get by slug
+GET {{baseUrl}}/category/by-slug/new-category
+
+### Category - update
+PUT {{baseUrl}}/category/3
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+	"name": "Updated category",
+	"image": "/uploads/default-category.png"
+}
+
+### Category - delete
+DELETE {{baseUrl}}/category/1
+Authorization: Bearer {{accessToken}}
+
+### Product - get all
+GET {{baseUrl}}/product
+
+### Product - search
+GET {{baseUrl}}/product?searchTerm=ne
+
+### Product - create
+# @name createProduct
+POST {{baseUrl}}/product/
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+	"name": "Product 2",
+	"image": "/uploads/default-product.png",
+	"description": "Sample description",
+	"price": 1000,
+	"categoryId": {{createCategory.response.body.id}}
+}
+
+### Product - get by slug
+GET {{baseUrl}}/product/by-slug/{{createProduct.response.body.slug}}
+
+### Product - get by category slug
+GET {{baseUrl}}/product/by-category/{{createCategory.response.body.slug}}
+
+### Product - update
+PUT {{baseUrl}}/product/{{createProduct.response.body.id}}
+Content-Type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+	"name": "Updated product",
+	"image": "/uploads/default-product.png",
+	"description": "Updated description",
+	"price": 1000,
+	"categoryId": {{createCategory.response.body.id}}
+}
+
+### Product - delete
+DELETE {{baseUrl}}/product/{{createProduct.response.body.id}}
+Authorization: Bearer {{accessToken}}
+
+### ==================== USER ====================
+
+### User - get profile
+GET {{baseUrl}}/users/profile
+Authorization: Bearer {{accessToken}}
+
+### User - toggle favorite
+PATCH {{baseUrl}}/users/profile/favorites/{{createProduct.response.body.id}}
+Authorization: Bearer {{accessToken}}
