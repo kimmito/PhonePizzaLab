@@ -1,18 +1,53 @@
-import { NavigationContainer } from '@react-navigation/native'
+import {
+	NavigationContainer,
+	useNavigation,
+	useNavigationContainerRef
+} from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FC } from 'react'
+import { set } from 'react-hook-form'
 
+import BottomMenu from '@/components/ui/layout/bottom-menu/bottomMenu'
+
+import { useAuth } from '@/hooks/useAuth'
+
+import { useCheckAuth } from '@/providers/auth/useCheckAuth'
+
+import PrivateNavigator from './PrivateNavigator'
 import { TypeRootStackParamList } from './navigation.types'
 import { routes } from './routes'
 
 const Stack = createNativeStackNavigator<TypeRootStackParamList>()
 
 const Navigation: FC = () => {
-	return (
-		<NavigationContainer>
+	const { user } = useAuth()
+	const [currentRoute, setCurrentRoute] = useState<string | undefined>(
+		undefined
+	)
 
-		</NavigationContainer>
+	useEffect(() => {
+		setCurrentRoute(navRef.getCurrentRoute()?.name)
+		const listener = navRef.addListener('state', () => {
+			setCurrentRoute(navRef.getCurrentRoute()?.name)
+		})
+
+		return () => navRef.removeListener('state', listener)
+	}, [])
+
+	useCheckAuth(currentRoute)
+
+	const navRef = useNavigationContainerRef()
+	return (
+		<>
+			<NavigationContainer ref={navRef}>
+				<PrivateNavigator />
+			</NavigationContainer>
+			{user && currentRoute && (
+				<BottomMenu currentRoute={currentRoute} nav={navRef.navigate} />
+			)}
+		</>
+		// Bottom menu
 	)
 }
 
