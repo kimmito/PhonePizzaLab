@@ -30,12 +30,18 @@ instance.interceptors.response.use(
 	config => config,
 	async error => {
 		const originalRequest = error.config
-		if (
-			error.response.status === 401 ||
+
+		const isAuthEndpoint = originalRequest?.url?.includes('/auth/')
+
+		const is401 = error.response?.status === 401
+		const isJwtError =
 			errorCatch(error) === 'jwt expired' ||
-			(errorCatch(error) === 'jwt must be provided' &&
-				error.config &&
-				!error.config._isRetry)
+			errorCatch(error) === 'jwt must be provided'
+
+		if (
+			(is401 || isJwtError) &&
+			!isAuthEndpoint &&
+			!originalRequest?._isRetry
 		) {
 			originalRequest._isRetry = true
 			try {
@@ -45,6 +51,8 @@ instance.interceptors.response.use(
 				if (errorCatch(e) === 'jwt expired') await deleteTokensStorage()
 			}
 		}
+
+		return Promise.reject(error)
 	}
 )
 

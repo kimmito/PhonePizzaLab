@@ -12,6 +12,7 @@ import useTypedNavigation from '@/hooks/useTypedNavigation'
 import { IAuthFormData } from '@/types/auth.interface'
 
 import AuthFields from './AuthFields'
+import { useAuthMutation } from './useAuthMutation'
 
 export const Auth: FC = () => {
 	const { navigate } = useTypedNavigation()
@@ -19,12 +20,14 @@ export const Auth: FC = () => {
 		mode: 'onChange'
 	})
 
+	const { loginSync, registerSync, isLoading } = useAuthMutation(reset)
+
 	const onSubmit: SubmitHandler<IAuthFormData> = data => {
-		console.log(data)
+		if(isReg) registerSync(data)
+			else loginSync(data)
 	}
 
 	const [isReg, setIsReg] = useState(false)
-	const isLoading = false
 
 	return (
 		<View className='mx-2 items-center justify-center h-full'>

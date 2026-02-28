@@ -9,6 +9,13 @@ import AuthProvider from '@/providers/auth/AuthProvider'
 import Toast from 'react-native-toast-message'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			refetchOnWindowFocus: false,
+		}
+	}
+})
 
 function App() {
 	return (
