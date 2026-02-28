@@ -6,9 +6,15 @@ import { AuthModule } from './auth/auth.module'
 import { CategoryModule } from './category/category.module'
 import { UserModule } from './user/user.module'
 import { ProductModule } from './product/product.module'
+import { ServeStaticModule } from '@nestjs/serve-static'
+import { path } from 'app-root-path'
 
 @Module({
 	imports: [
+		ServeStaticModule.forRoot({
+			rootPath: `${path}/uploads`,
+			serveRoot: '/uploads'
+		}),
 		ConfigModule.forRoot({ isGlobal: true }),
 		AuthModule,
 		CategoryModule,

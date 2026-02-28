@@ -1001,7 +1001,7 @@
     webpack "5.104.1"
     webpack-node-externals "3.0.0"
 
-"@nestjs/common@^10.0.0 || ^11.0.0", "@nestjs/common@^11.0.0", "@nestjs/common@^11.0.1", "@nestjs/common@^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0":
+"@nestjs/common@^10.0.0 || ^11.0.0", "@nestjs/common@^11.0.0", "@nestjs/common@^11.0.1", "@nestjs/common@^11.0.2", "@nestjs/common@^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0":
   version "11.1.13"
   resolved "https://registry.npmjs.org/@nestjs/common/-/common-11.1.13.tgz"
   integrity sha512-ieqWtipT+VlyDWLz5Rvz0f3E5rXcVAnaAi+D53DEHLjc1kmFxCgZ62qVfTX2vwkywwqNkTNXvBgGR72hYqV//Q==
@@ -1021,7 +1021,7 @@
     dotenv-expand "12.0.3"
     lodash "4.17.23"
 
-"@nestjs/core@^11.0.0", "@nestjs/core@^11.0.1":
+"@nestjs/core@^11.0.0", "@nestjs/core@^11.0.1", "@nestjs/core@^11.0.2":
   version "11.1.13"
   resolved "https://registry.npmjs.org/@nestjs/core/-/core-11.1.13.tgz"
   integrity sha512-Tq9EIKiC30EBL8hLK93tNqaToy0hzbuVGYt29V8NhkVJUsDzlmiVf6c3hSPtzx2krIUVbTgQ2KFeaxr72rEyzQ==
@@ -1072,6 +1072,13 @@
     comment-json "4.4.1"
     jsonc-parser "3.3.1"
     pluralize "8.0.0"
+
+"@nestjs/serve-static@^5.0.4":
+  version "5.0.4"
+  resolved "https://registry.npmjs.org/@nestjs/serve-static/-/serve-static-5.0.4.tgz"
+  integrity sha512-3kO1M9D3vsPyWPFardxIjUYeuolS58PnhCoBTkS7t3BrdZFZCKHnBZ15js+UOzOR2Q6HmD7ssGjLd0DVYVdvOw==
+  dependencies:
+    path-to-regexp "8.3.0"
 
 "@nestjs/testing@^11.0.1":
   version "11.1.13"
@@ -1919,6 +1926,11 @@ anymatch@^3.1.3:
   dependencies:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
+
+app-root-path@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/app-root-path/-/app-root-path-3.1.0.tgz"
+  integrity sha512-biN3PwB2gUtjaYy/isrU3aNWI5w+fAfvHkSvCKeQGxhmYpwKFUxudR3Yya+KqVRHBmEDYh+/lTozYCFbmzX4nA==
 
 append-field@^1.0.0:
   version "1.0.0"
@@ -2879,7 +2891,7 @@ expect@^30.0.0, expect@30.2.0:
     jest-mock "30.2.0"
     jest-util "30.2.0"
 
-express@5.2.1:
+express@^5.0.1, express@5.2.1:
   version "5.2.1"
   resolved "https://registry.npmjs.org/express/-/express-5.2.1.tgz"
   integrity sha512-hIS4idWWai69NezIdRt2xFVofaF4j+6INOpJlVOLDO8zXGpUVEVzIYk12UUi2JzjEzWL3IOAxcTubgz9Po0yXw==
