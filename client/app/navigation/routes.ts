@@ -5,6 +5,8 @@ import Explorer from '@/screens/explorer/Explorer'
 import Favorites from '@/screens/favorites/Favorites'
 import Profile from '@/screens/profile/Profile'
 import Search from '@/screens/search/Search'
+import Cart from '@/screens/cart/Cart'
+import Category from '@/screens/category/Category'
 
 export const routes: IRoute[] = [
 	{
@@ -26,5 +28,13 @@ export const routes: IRoute[] = [
 	{
 		name: 'Profile',
 		component: Profile
+	},
+	{
+		name: 'Cart',
+		component: Cart
+	},
+	{
+		name: 'Category',
+		component: Category
 	}
 ]
