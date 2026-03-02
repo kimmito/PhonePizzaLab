@@ -1,12 +1,13 @@
 import Home from '../screens/home/Home'
 
 import { IRoute } from './navigation.types'
-import Explorer from '@/screens/explorer/Explorer'
-import Favorites from '@/screens/favorites/Favorites'
-import Profile from '@/screens/profile/Profile'
-import Search from '@/screens/search/Search'
 import Cart from '@/screens/cart/Cart'
 import Category from '@/screens/category/Category'
+import Explorer from '@/screens/explorer/Explorer'
+import Favorites from '@/screens/favorites/Favorites'
+import Product from '@/screens/product/Product'
+import Profile from '@/screens/profile/Profile'
+import Search from '@/screens/search/Search'
 
 export const routes: IRoute[] = [
 	{
@@ -36,5 +37,6 @@ export const routes: IRoute[] = [
 	{
 		name: 'Category',
 		component: Category
-	}
+	},
+	{ name: 'Product', component: Product }
 ]

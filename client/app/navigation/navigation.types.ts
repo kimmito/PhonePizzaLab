@@ -11,6 +11,9 @@ export type TypeRootStackParamList = {
 	Category: {
 		slug: string
 	}
+	Product: {
+		slug: string
+	}
 }
 
 export interface IRoute {
